@@ -7,24 +7,24 @@ require './scoring.rb'
 require './drawing.rb'
 
 class GameWindow < Gosu::Window
-	def initialize
-		super 280, 320
-		self.caption = "Blocks"
+  def initialize
+    super 280, 320
+    self.caption = "Blocks"
 
-		@input = Input.new(200)
-		@drawing = Drawing.new(width, height)
-		@logic = Logic.new(@input, Gosu, PieceFactory.new, LineCleaner.new, Scoring.new)
-	end
+    @input = Input.new(200)
+    @drawing = Drawing.new(width, height)
+    @logic = Logic.new(@input, Gosu, PieceFactory.new, LineCleaner.new, Scoring.new)
+  end
 
-	def update
-		@logic.update
+  def update
+    @logic.update
 
-		close if @input.exit
-	end
+    close if @input.exit
+  end
 
-	def draw
-		@drawing.draw(@logic)
-	end
+  def draw
+    @drawing.draw(@logic)
+  end
 end
 
 window = GameWindow.new
