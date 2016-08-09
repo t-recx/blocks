@@ -10,7 +10,7 @@ class GameWindow < Gosu::Window
   HIGHSCORE_FILENAME = 'highscores.dat'
 
   def initialize
-    super 280, 320
+    super 260, 320
     self.caption = "Blocks"
 
     @on_menu = true

@@ -21,7 +21,7 @@ class Drawing
     @font.draw("Level: #{logic.level}", 170, 24, 0)
     @font.draw("Next: ", 170, 44, 0)
 
-    @font.draw_rel("Game Over!", @window_width / 2, @window_height / 2, 0, 0.5, 0.5) if not logic.running 
+    @font.draw_rel("Game Over!", 170 + (@window_width - 170) / 2, @window_height - 20, 0, 0.5, 0.5, 1, 1, 0xff_ff0000) if not logic.running 
   end
 
   def draw_field(logic)
