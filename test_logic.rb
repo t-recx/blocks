@@ -141,21 +141,5 @@ class TestLogic < Test::Unit::TestCase
     assert_equal true, @fake_scoring.evaluate_score_called
     assert_equal 100, @logic.score
   end
-
-  def test_update_when_piece_settles_if_field_has_negative_blocks_should_end_game
-    @fake_input.down = true
-    
-    @fake_piece.down_return_value = false
-
-    @fake_piece.x = 0
-    @fake_piece.y = 0
-    @fake_piece.current_block = [[0, -1]]
-
-    @logic.update
-
-    assert_equal [[0, -1]], @logic.field
-
-    assert_equal false, @logic.running
-  end
 end
 

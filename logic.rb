@@ -48,15 +48,21 @@ class Logic
     @score += @scoring.evaluate_score(@level, lines_cleared)
   end
 
+  def verify_endgame
+    if @field.group_by {|i| i }.values.any? {|i| i.length > 1 } then
+      @running = false
+      return true
+    end
+
+    return false
+  end
+
   def evaluate_game
     settle_piece_on_field
+    
+    return if verify_endgame
 
     clear_lines
-
-    if @field.any? {|i| i[1] < 0 } then
-      @running = false
-      return
-    end
 
     create_new_piece
   end
@@ -70,6 +76,8 @@ class Logic
   end
 
   def update
+    return if not @running
+
     @current_piece.rotate(@field, @field_width, @field_height) if @input.rotate
 
     @current_piece.move_left(@field) if @input.left

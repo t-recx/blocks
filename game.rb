@@ -13,11 +13,17 @@ class GameWindow < Gosu::Window
 
     @input = Input.new(200)
     @drawing = Drawing.new(width, height)
+    create_logic
+  end
+
+  def create_logic
     @logic = Logic.new(@input, Gosu, PieceFactory.new, LineCleaner.new, Scoring.new)
   end
 
   def update
     @logic.update
+
+    create_logic if @input.start and not @logic.running
 
     close if @input.exit
   end
